@@ -4,7 +4,7 @@ import { kamentApiRoutes } from "https://raw.githubusercontent.com/satyarohith/k
 serve({
   "/": Home,
   "/kament.js": async () => {
-    const res = await fetch(new URL("kament_client.js", import.meta.url));
+    const res = await fetch("https://raw.githubusercontent.com/satyarohith/kament/main/kament_client.js");
     res.headers.set("Access-Control-Allow-Origin", "*");
     return res;
   },

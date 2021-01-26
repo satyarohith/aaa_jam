@@ -6,9 +6,15 @@ serve({
   "/kament.js": async () => {
     const res = await fetch("https://raw.githubusercontent.com/satyarohith/kament/main/kament_client.js");
     res.headers.set("Access-Control-Allow-Origin", "*");
+    res.headers.set("Content-Type", "application/javascript; charset=utf-8")
     return res;
   },
-  "/kament.css": () => fetch(new URL("kament.css", import.meta.url)),
+  "/kament.css": async () => { 
+    const res = await fetch(new URL("kament.css", import.meta.url));
+    res.headers.set("Access-Control-Allow-Origin", "*");
+    res.headers.set("Content-Type", "text/css; charset=utf-8")
+    return res;
+  },
   ...kamentApiRoutes,
 });
 
@@ -21,7 +27,7 @@ function Home() {
       </p>
       <br />
       <br />
-      <Kament slug="kament-local-host" />
+      <Kament slug="kament.deno.dev" />
     </Layout>
   );
 }
@@ -38,7 +44,7 @@ function Layout({ children }) {
         />
       </head>
       <body
-        className="min-h-screen bg-gray-100 py-6 flex flex-col place-items-center sm:py-12"
+        className="min-h-screen py-6 flex flex-col place-items-center"
       >
         {children}
       </body>

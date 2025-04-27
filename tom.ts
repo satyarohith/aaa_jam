@@ -1,1 +1,4 @@
-Deno.serve(req => new Response("hello world"));
+Deno.serve(req => {
+console.log("hello world");
+ return new Response("hello world")
+});
